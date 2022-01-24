@@ -1,11 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Plant extends Organism {
+abstract public class Plant extends Organism {
 
-    public Plant(Organism organism, Integer position, World world, None newPosition) {
-        super(organism, position, world);
-        this.newPosition = newPosition;
+    public Plant(Organism plant, Position position, World world) {
+        super(plant, position, world);
     }
 
     public List<Action> move() {
@@ -15,23 +14,26 @@ public class Plant extends Organism {
 
     public List<Action> action() {
         List<Action> result = new ArrayList<Action>();
-        newPlant = null;
-        newPosition = null;
+        Organism newPlant;
+        Position newPosition;
+
         if (this.ifReproduce()) {
-            pomPositions = this.getFreeNeighboringPosition(this.position)
-            if (pomPositions) {
-                newPosition = random.choice(pomPositions);
+            List <Position> pomPositions = this.getFreeNeighboringPosition(this.getPosition());
+            if (pomPositions != null && !pomPositions.isEmpty()) {
+                java.util.Random random = new java.util.Random();
+                int newPositionInt = random.nextInt(pomPositions.size());
+                newPosition = pomPositions.get(newPositionInt);
                 newPlant = this.clone();
                 newPlant.initParams();
-                newPlant.position = newPosition;
-                this.power = this.getPower()/ 2;
+                newPlant.setPosition(newPosition);
+                this.setPower(this.getPower()/ 2);
                 result.add(new Action(ActionEnum.A_ADD, newPosition, 0, newPlant));
             }
         }
         return result;
     }
     
-    public getFreeNeighboringPosition(position) {
+    public List<Position> getFreeNeighboringPosition(Position position) {
         return this.getWorld().filterFreePositions(this.getWorld().getNeighboringPositions(position));
     }
 

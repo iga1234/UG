@@ -71,7 +71,7 @@ public class World {
         this.separator = separator;
     }
 
-    public void makeTurn(Organism organisms, Action action) {
+    public void makeTurn() {
         List<Action> actions = new ArrayList<Action>();
 
         for (int i = 0; i < this.organisms.size(); i++) {
@@ -205,7 +205,7 @@ public class World {
         return result;
         }
 
-    public List<Position> filterPositionsWithOtherSpecies(List<Position> fields, Class<Organism>  clazz){
+    public List<Position> filterPositionsWithOtherSpecies(List<Position> fields, Class<?>  clazz){
         List<Position> result = new ArrayList<>();
         Organism pomOrg;
 

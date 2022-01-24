@@ -6,7 +6,7 @@ public class Grass extends Plant {
     }
 
     public Grass clone() {
-        return Grass(this, null, null);
+        return new Grass(this, null, null);
     }
 
 

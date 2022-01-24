@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Wolf extends Animal {
 
     public Wolf(Organism wolf, Position position, World world) {
@@ -19,7 +22,7 @@ public class Wolf extends Animal {
         this.setSign("W");
     }
 
-    public getNeighboringPositions() {
+    public List<Position> getNeighboringPositions() {
         return this.getWorld().filterPositionsWithOtherSpecies(this.getWorld().getNeighboringPositions(this.getPosition()), Wolf.class);
     }
 }
