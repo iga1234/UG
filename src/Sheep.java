@@ -1,24 +1,27 @@
+import java.util.List;
+
 public class Sheep extends Animal{
-    public Sheep(Organism organism, Integer position, World world, None newPosition) {
-        super(organism, position, world, newPosition);
+
+    public Sheep(Organism sheep, Position position, World world) {
+        super(sheep, position, world);
 
     }
 
     public Sheep clone() {
-        return Sheep(this, null, null);
+        return new Sheep(this, null, null);
     }
 
 
-    public initParams() {
-        this.power = 3;
-        this.initiative = 3;
-        this.liveLength = 10;
-        this.powerToReproduce = 6;
-        this.sign = 'S';
+    public void initParams() {
+        this.setPower(3);
+        this.setInitiative(3);
+        this.setLiveLength(10);
+        this.setPowerToReproduce(6);
+        this.setSign("S");
     }
 
-    public getNeighboringPositions() {
-        return this.getWorld().filterPositionsWithOtherSpecies(this.getWorld().getNeighboringPositions(this.position), Sheep);
+    public List<Position> getNeighboringPositions() {
+        return this.getWorld().filterPositionsWithoutAnimals(this.getWorld().getNeighboringPositions(this.getPosition()));
     }
 }
-}
+

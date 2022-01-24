@@ -8,8 +8,9 @@ public class Toadstool extends Plant{
     }
 
     public Grass clone() {
-        return Dandelion(this, null, null);
+        return Grass(this, null, null);
     }
+
     public Grass initParams() {
         this.power = 0;
         this.initiative = 0;

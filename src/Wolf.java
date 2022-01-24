@@ -1,24 +1,25 @@
 public class Wolf extends Animal {
 
-    public Wolf(Organism organism, Integer position, World world, None newPosition) {
-        super(organism, position, world, newPosition);
+    public Wolf(Organism wolf, Position position, World world) {
+        super(wolf, position, world);
 
     }
 
     public Wolf clone() {
-        return Wolf(this, null, null);
+
+        return new Wolf(this, null, null);
     }
 
 
-    public initParams() {
-        this.power = 6;
-        this.initiative = 5;
-        this.liveLength = 15;
-        this.powerToReproduce = 12;
-        this.sign = 'W';
+    public void initParams() {
+        this.setPower(6);
+        this.setInitiative(5);
+        this.setLiveLength(15);
+        this.setPowerToReproduce(12);
+        this.setSign("W");
     }
 
     public getNeighboringPositions() {
-        return this.getWorld().filterPositionsWithOtherSpecies(this.getWorld().getNeighboringPositions(this.position), Wolf);
+        return this.getWorld().filterPositionsWithOtherSpecies(this.getWorld().getNeighboringPositions(this.getPosition()), Wolf.class);
     }
 }

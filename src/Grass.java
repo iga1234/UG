@@ -1,7 +1,7 @@
-public class Grass extends Plant{
+public class Grass extends Plant {
 
-    public Grass(Organism organism, Integer position, World world, None newPosition) {
-        super(organism, position, world, newPosition);
+    public Grass(Organism grass, Position position, World world) {
+        super(grass, position, world);
 
     }
 
@@ -10,11 +10,11 @@ public class Grass extends Plant{
     }
 
 
-    public Grass initParams() {
-        this.power = 0;
-        this.initiative = 0;
-        this.liveLength = 6;
-        this.powerToReproduce = 3;
-        this.sign = 'G';
-        }
+    public void initParams() {
+        this.setPower(0);
+        this.setInitiative(0);
+        this.setLiveLength(6);
+        this.setPowerToReproduce(3);
+        this.setSign("G");
+    }
 }

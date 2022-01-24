@@ -2,35 +2,38 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Animal extends Organism {
 
-    public Animal(Organism organism, Integer position, World world) {
-        super(organism, position, world);
+abstract public class Animal extends Organism {
+
+    private Position lastPosition;
+
+    public Animal(Organism animal, Position position, World world) {
+        super(animal, position, world);
+        this.lastPosition = position;
     }
 
-    @property
-    public void lastPosition() {
-        return this.__lastPosition;
+    public Position getLastPosition() {
+        return this.lastPosition;
     }
 
-
-    @lastPosition.setter {
-        public void lastPosition(Integer value){
-            this.__lastPosition = value;
-        }
+    public void setLastPosition(Position value){
+        this.lastPosition = value;
     }
+
     public List<Action> move() {
         List<Action> result = new ArrayList<Action>();
-        pomPositions = this.getNeighboringPositions();
-        newPosition = null;
+        List<Position> pomPositions = this.getNeighboringPositions();
+        Position newPosition = null;
 
-        if (pomPositions) {
-            newPosition = random.choice(pomPositions);
-            result.add(new Action(ActionEnum.A_MOVE, new Position, 0, this));
+        if (pomPositions != null) {
+            java.util.Random random = new java.util.Random();
+            int newPositionInt = random.nextInt(pomPositions.size());
+            newPosition = pomPositions.get(newPositionInt);
+            result.add(new Action(ActionEnum.A_MOVE, newPosition, 0, this));
             this.lastPosition = this.getPosition();
-            metOrganism = this.getWorld().getOrganismFromPosition(new Position);
-            if(metOrganism is == null) {
-                result.extend(metOrganism.consequences(this));
+            Organism metOrganism = this.getWorld().getOrganismFromPosition(newPosition);
+            if(metOrganism  != null) {
+                result.addAll(metOrganism.consequences(this));
             }
         }
         return result;
@@ -38,23 +41,27 @@ public class Animal extends Organism {
 
     public  List<Action> action() {
         List<Action> result = new ArrayList<Action>();
-        newAnimal = null;
-        birthPositions = this.getNeighboringBirthPositions();
+        Organism newAnimal;
+        Position newAnimalPosition;
+        List <Position> birthPositions = this.getNeighboringBirthPositions();
 
-        if (this.ifReproduce() && birthPositions) {
-            newAnimalPosition = random.choice(birthPositions);
-            newAnimal = this.clone() newAnimal.initParams();
-            newAnimal.position = newAnimalPosition;
-            this.power = setPower(getPower() / 2);
-            result.add(new Action(ActionEnum.A_ADD, newAnimalPosition, 0, newAnimal))
+        if (this.ifReproduce() && birthPositions != null && birthPositions.size() > 0) {
+            java.util.Random random = new java.util.Random();
+            int newAnimalPositionInt = random.nextInt(birthPositions.size());
+            newAnimalPosition = birthPositions.get(newAnimalPositionInt);
+            newAnimal = this.clone();
+            newAnimal.initParams();
+            newAnimal.setPosition(newAnimalPosition);
+            this.setPower(this.getPower() / 2);
+            result.add(new Action(ActionEnum.A_ADD, newAnimalPosition, 0, newAnimal));
         }
         return result;
     }
 
-    public ? getNeighboringPositions() {
+    public List<Position> getNeighboringPositions() {
         return this.getWorld().getNeighboringPositions(this.getPosition());
     }
-    public ? getNeighboringBirthPositions() {
+    public List<Position> getNeighboringBirthPositions() {
         return getWorld().filterFreePositions(this.getWorld().getNeighboringPositions(this.getPosition()));
     }
 }

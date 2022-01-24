@@ -67,7 +67,7 @@ abstract public class Organism {
         return world;
     }
 
-    public Organism(Organism organism, Integer position, World world) {
+    public Organism(Organism organism, Position position, World world) {
 
         if (organism != null) {
             this.initiative = organism.getInitiative();
@@ -107,6 +107,11 @@ abstract public class Organism {
     abstract public List<Action> move();
 
     abstract public List<Action> action();
+
+    abstract public Organism clone();
+
+    abstract public void initParams();
+
     @Override
     public String toString() {
         return this.getClass().getSimpleName();
