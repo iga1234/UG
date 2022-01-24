@@ -10,6 +10,8 @@ abstract public class Animal extends Organism {
     public Animal(Organism animal, Position position, World world) {
         super(animal, position, world);
         this.lastPosition = position;
+        System.out.println("animal");
+
     }
 
     public Position getLastPosition() {

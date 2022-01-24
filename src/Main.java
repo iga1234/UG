@@ -21,9 +21,11 @@ public class Main {
         newOrg = new Toadstool(null, new Position(4, 4), pyWorld);
         pyWorld.addOrganism(newOrg);
 
-        System.out.print(pyWorld.toString());
+        System.out.print(pyWorld);
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 2; i++) {
+            System.out.println("aaa");
+
             System.in.read();
             Runtime.getRuntime().exec("cls");
             pyWorld.makeTurn();

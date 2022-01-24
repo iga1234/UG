@@ -221,7 +221,7 @@ public class World {
     public String toString() {
         String result = "\nturn{ " + this.turn.toString() + "\n";
         for (int wY = 0; wY < this.worldY; wY++) {
-            for (int wX = 0; wY < this.worldX; wX++) {
+            for (int wX = 0; wX < this.worldX; wX++) {
                 Organism org = this.getOrganismFromPosition(new Position(wX, wY));
                 if (org != null) {
                     result += org.getSign();

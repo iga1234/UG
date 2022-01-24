@@ -5,6 +5,8 @@ public class Wolf extends Animal {
 
     public Wolf(Organism wolf, Position position, World world) {
         super(wolf, position, world);
+        System.out.println("wolf");
+
 
     }
 

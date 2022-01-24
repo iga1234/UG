@@ -4,7 +4,10 @@ import java.util.List;
 public class Toadstool extends Plant{
 
     public Toadstool(Organism toadstool, Position position, World world) {
+
         super(toadstool, position, world);
+        System.out.println("toadstool");
+
     }
 
     public Toadstool clone() {
