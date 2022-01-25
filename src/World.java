@@ -6,6 +6,91 @@ import java.util.stream.Collectors;
 
 public class World {
 
+    public static class Builder {
+
+        public Builder() {
+
+        }
+        private Sheep sheep;
+
+        public Builder sheep(Position position) {
+            this.sheep = new Sheep(null, position, null);
+            this.sheep.initParams();
+            return this;
+        }
+
+        private Wolf wolf;
+
+        public Builder wolf(Position position) {
+            this.wolf = new Wolf(null, position, null);
+            this.wolf.initParams();
+            return this;
+        }
+
+        private Dandelion dandelion;
+
+        public Builder dandelion(Position position) {
+            this.dandelion = new Dandelion(null, position, null);
+            this.dandelion.initParams();
+            return this;
+        }
+
+        private Grass grass;
+
+        public Builder grass(Position position) {
+            this.grass = new Grass(null, position, null);
+            this.grass.initParams();
+            return this;
+        }
+
+        private Alien alien;
+
+        public Builder alien(Position position) {
+            this.alien = new Alien(null, position, null);
+            this.alien.initParams();
+            return this;
+        }
+
+        private Toadstool toadstool;
+
+        public Builder toadstool(Position position) {
+            this.toadstool = new Toadstool(null, position, null);
+            this.toadstool.initParams();
+            return this;
+        }
+
+        public World build(Integer worldX, Integer worldY) {
+
+            World world = new World(worldX, worldY);
+            if (this.sheep != null) {
+                world.addOrganism(this.sheep);
+                this.sheep.setWorld(world);
+            }
+            if (this.grass != null) {
+                world.addOrganism(this.grass);
+                this.grass.setWorld(world);
+            }
+            if (this.alien != null) {
+                world.addOrganism(this.alien);
+                this.alien.setWorld(world);
+            }
+            if (this.dandelion != null) {
+                world.addOrganism(this.dandelion);
+                this.dandelion.setWorld(world);
+            }
+            if (this.toadstool != null) {
+                world.addOrganism(this.toadstool);
+                this.toadstool.setWorld(world);
+            }
+            if (this.wolf != null) {
+                world.addOrganism(this.wolf);
+                this.wolf.setWorld(world);
+            }
+            return world;
+        }
+    }
+
+    private static int count = 0;
     private List<Organism> organisms;
     private Integer worldX;
     private Integer worldY;
@@ -14,7 +99,11 @@ public class World {
     private String separator;
 
 
-    public World(Integer worldX, Integer worldY) {
+
+    public World(Integer worldX, Integer worldY) {this.count++;
+        if(count > 1){
+            throw new IllegalStateException("You can't create more than one instance of this object.");
+        }
         this.worldX = worldX;
         this.worldY = worldY;
         this.turn = 0;
@@ -217,6 +306,7 @@ public class World {
         }
         return result;
     }
+
 
     public String toString() {
         String result = "\nturn " + this.turn.toString() + "\n";
