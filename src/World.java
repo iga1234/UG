@@ -98,7 +98,7 @@ public class World {
             this.organisms.get(o).setLiveLength(this.organisms.get(o).getLiveLength() - 1);
             this.organisms.get(o).setPower(this.organisms.get(o).getPower() + 1);
             if (this.organisms.get(o).getLiveLength() < 1) {
-                System.out.println(this.organisms.get(o).toString() + "{ died of old age at{ " + this.organisms.get(o).getPosition());
+                System.out.println(this.organisms.get(o).toString() + " died of old age at " + this.organisms.get(o).getPosition());
             }
         }
         this.organisms = this.organisms.stream().filter(o -> o.getLiveLength() > 0).collect(Collectors.toList());
@@ -113,7 +113,7 @@ public class World {
     }
 
     public void makeMove(Action action) {
-            System.out.println(action);
+        System.out.println(action);
         if (action.getAction().equals(ActionEnum.A_ADD)) {
             this.newOrganisms.add(action.getOrganism());
         }
@@ -219,7 +219,7 @@ public class World {
     }
 
     public String toString() {
-        String result = "\nturn{ " + this.turn.toString() + "\n";
+        String result = "\nturn " + this.turn.toString() + "\n";
         for (int wY = 0; wY < this.worldY; wY++) {
             for (int wX = 0; wX < this.worldX; wX++) {
                 Organism org = this.getOrganismFromPosition(new Position(wX, wY));

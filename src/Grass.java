@@ -3,8 +3,6 @@ public class Grass extends Plant {
     public Grass(Organism grass, Position position, World world) {
 
         super(grass, position, world);
-        System.out.println("grass");
-
     }
 
     public Grass clone() {

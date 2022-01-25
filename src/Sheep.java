@@ -4,9 +4,6 @@ public class Sheep extends Animal{
 
     public Sheep(Organism sheep, Position position, World world) {
         super(sheep, position, world);
-        System.out.println("sheep");
-
-
     }
 
     public Sheep clone() {

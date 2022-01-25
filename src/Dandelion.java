@@ -2,8 +2,6 @@ public class Dandelion extends Plant{
 
     public Dandelion(Organism dandelion, Position position, World world) {
         super(dandelion, position, world);
-        System.out.println("dandelion");
-
     }
 
     public Dandelion clone() {

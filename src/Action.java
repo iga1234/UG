@@ -46,6 +46,19 @@ public class Action {
 
     @Override
     public String toString() {
+
+        if(ActionEnum.A_ADD.equals(this.action)){
+            return this.organism.getClass().getSimpleName() + ": add at: " + this.position;
+        }
+        if(ActionEnum.A_INCREASEPOWER.equals(this.action)){
+            return this.organism.getClass().getSimpleName() + ": increase power: " + this.value;
+        }
+        if(ActionEnum.A_MOVE.equals(this.action)){
+            return this.organism.getClass().getSimpleName() + ": move from " + this.organism.getPosition() + " to: " + this.position;
+        }
+        if(ActionEnum.A_REMOVE.equals(this.action)){
+            return this.organism.getClass().getSimpleName() + ": remove from: " + this.organism.getPosition();
+        }
         return "Action{" +
                 "action=" + action +
                 ", organism=" + organism +

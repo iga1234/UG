@@ -5,7 +5,6 @@ abstract public class Plant extends Organism {
 
     public Plant(Organism plant, Position position, World world) {
         super(plant, position, world);
-        System.out.println("plant");
 
     }
 

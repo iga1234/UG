@@ -10,8 +10,6 @@ abstract public class Animal extends Organism {
     public Animal(Organism animal, Position position, World world) {
         super(animal, position, world);
         this.lastPosition = position;
-        System.out.println("animal");
-
     }
 
     public Position getLastPosition() {
@@ -27,7 +25,7 @@ abstract public class Animal extends Organism {
         List<Position> pomPositions = this.getNeighboringPositions();
         Position newPosition = null;
 
-        if (pomPositions != null) {
+        if (pomPositions != null && pomPositions.size() > 0) {
             java.util.Random random = new java.util.Random();
             int newPositionInt = random.nextInt(pomPositions.size());
             newPosition = pomPositions.get(newPositionInt);

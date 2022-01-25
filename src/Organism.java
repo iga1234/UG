@@ -68,7 +68,6 @@ abstract public class Organism {
     }
 
     public Organism(Organism organism, Position position, World world) {
-        System.out.println("organism");
 
 
         if (organism != null) {
