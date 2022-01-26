@@ -25,6 +25,10 @@ abstract public class Animal extends Organism {
         List<Position> pomPositions = this.getNeighboringPositions();
         Position newPosition = null;
 
+        if(this.getWorld().isAlienNearBy(this.getPosition())){
+            return result;
+        }
+
         if (pomPositions != null && pomPositions.size() > 0) {
             java.util.Random random = new java.util.Random();
             int newPositionInt = random.nextInt(pomPositions.size());

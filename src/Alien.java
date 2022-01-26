@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Alien extends Organism{
@@ -8,17 +9,28 @@ public class Alien extends Organism{
 
     @Override
     public List<Action> move() {
-        return null;
+
+        List<Action> result = new ArrayList<Action>();
+        List<Position> pomPositions = this.getNeighboringPositions();
+        Position newPosition = null;
+
+        if (pomPositions != null && pomPositions.size() > 0) {
+            java.util.Random random = new java.util.Random();
+            int newPositionInt = random.nextInt(pomPositions.size());
+            newPosition = pomPositions.get(newPositionInt);
+            result.add(new Action(ActionEnum.A_MOVE, newPosition, 0, this));
+        }
+        return result;
     }
 
     @Override
     public List<Action> action() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
     public Organism clone() {
-        return null;
+        return this;
     }
 
     @Override
@@ -26,13 +38,13 @@ public class Alien extends Organism{
         this.setPower(1);
         this.setInitiative(1);
         java.util.Random random = new java.util.Random();
-        int live = random.nextInt(5);
+        int live = random.nextInt(15);
         this.setLiveLength(live);
         this.setPowerToReproduce(0);
         this.setSign("A");
     }
 
     public List<Position> getNeighboringPositions() {
-        return this.getWorld().filterPositionsWithoutAnimals(this.getWorld().getNeighboringPositions(this.getPosition()));
+        return this.getWorld().getNeighboringPositions(this.getPosition());
     }
 }

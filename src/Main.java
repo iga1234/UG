@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         World pyWorld = new World.Builder()
-//                .alien(new Position(5,5))
+                .alien(new Position(5,5))
                 .dandelion(new Position(0, 4))
                 .toadstool(new Position(4,4))
                 .grass(new Position(4,0))

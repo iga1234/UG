@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 abstract public class Organism {
 
@@ -112,6 +113,19 @@ abstract public class Organism {
     abstract public Organism clone();
 
     abstract public void initParams();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Organism organism = (Organism) o;
+        return power == organism.power && initiative == organism.initiative && liveLength == organism.liveLength && powerToReproduce == organism.powerToReproduce && Objects.equals(position, organism.position) && Objects.equals(sign, organism.sign) && Objects.equals(world, organism.world);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(power, initiative, position, liveLength, powerToReproduce, sign, world);
+    }
 
     @Override
     public String toString() {

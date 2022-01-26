@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 public class World {
 
+
+
     public static class Builder {
 
         public Builder() {
@@ -160,6 +162,24 @@ public class World {
         this.separator = separator;
     }
 
+    public boolean isAlienNearBy(Position position) {
+
+        Position pomPosition;
+
+        for (int y = -2; y < 3; y++) {
+            for (int x = -2; x < 3; x++) {
+                pomPosition = new Position(position.getX() + x, position.getY() + y);
+                if(this.positionOnBoard(pomPosition) && !(y == 0 && x == 0)){
+                    if(this.getOrganismFromPosition(pomPosition) != null && "A".equals(this.getOrganismFromPosition(pomPosition).getSign())){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+
     public void makeTurn() {
         List<Action> actions = new ArrayList<Action>();
 
@@ -187,7 +207,12 @@ public class World {
             this.organisms.get(o).setLiveLength(this.organisms.get(o).getLiveLength() - 1);
             this.organisms.get(o).setPower(this.organisms.get(o).getPower() + 1);
             if (this.organisms.get(o).getLiveLength() < 1) {
-                System.out.println(this.organisms.get(o).toString() + " died of old age at " + this.organisms.get(o).getPosition());
+                if ("A".equals(this.organisms.get(o).getSign())) {
+                    System.out.println(this.organisms.get(o).toString() + " disappear at " + this.organisms.get(o).getPosition());
+                }
+                if (!"A".equals(this.organisms.get(o).getSign())) {
+                    System.out.println(this.organisms.get(o).toString() + " died of old age at " + this.organisms.get(o).getPosition());
+                }
             }
         }
         this.organisms = this.organisms.stream().filter(o -> o.getLiveLength() > 0).collect(Collectors.toList());
