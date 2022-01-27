@@ -13,8 +13,8 @@ public class Grass extends Plant {
     public void initParams() {
         this.setPower(0);
         this.setInitiative(0);
-        this.setLiveLength(6);
-        this.setPowerToReproduce(3);
+        this.setLiveLength(8);
+        this.setPowerToReproduce(1);
         this.setSign("G");
     }
 }

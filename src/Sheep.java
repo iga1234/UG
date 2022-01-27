@@ -14,7 +14,7 @@ public class Sheep extends Animal{
     public void initParams() {
         this.setPower(3);
         this.setInitiative(3);
-        this.setLiveLength(10);
+        this.setLiveLength(13);
         this.setPowerToReproduce(6);
         this.setSign("S");
     }

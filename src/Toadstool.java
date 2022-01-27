@@ -17,7 +17,7 @@ public class Toadstool extends Plant{
         this.setPower(0);
         this.setInitiative(0);
         this.setLiveLength(10);
-        this.setPowerToReproduce(5);
+        this.setPowerToReproduce(1);
         this.setSign("T");
     }
     public List<Action> consequences(Organism attackingOrganism) {
